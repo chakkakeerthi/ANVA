@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ANVA Order Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff7f0;
+    }
+    h2 { color: #333; }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    .total {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>ANVA – Order Calculator</h2>
+
+  <label>Choose Food Item</label>
+  <select id="item" onchange="calculateTotal()">
+    <option value="0">-- Select --</option>
+    <option value="60">Noodles – ₹60</option>
+    <option value="50">Fried Rice – ₹50</option>
+    <option value="10">Roti – ₹10</option>
+  </select>
+
+  <label>How hungry are you?</label>
+  <input type="number" id="quantity" min="1" oninput="calculateTotal()">
+
+  <div class="total" id="total">
+    Total to Pay: ₹0
+  </div>
+
+  <script>
+    function calculateTotal() {
+      let price = document.getElementById("item").value;
+      let qty = document.getElementById("quantity").value;
+      let total = price * qty;
+      document.getElementById("total").innerText =
+        "Total to Pay: ₹" + (total || 0);
+    }
+  </script>
+
+</body>
+</html>
