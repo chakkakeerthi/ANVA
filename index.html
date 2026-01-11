@@ -2,45 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ANVA | Comfort Calculator</title>
+  <title>ANVA | Order Calci</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      font-family: 'Poppins', system-ui, sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      background:
+        radial-gradient(circle at 10% 20%, #ffe8d6 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, #fde2e4 0%, transparent 45%),
+        #fffaf5;
     }
 
     .card {
       background: white;
       width: 90%;
       max-width: 420px;
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 5px;
+      margin: 0;
     }
 
     .tagline {
       text-align: center;
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 20px;
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 22px;
     }
 
     .item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .item label {
@@ -48,82 +52,81 @@
     }
 
     input[type="number"] {
-      width: 60px;
-      padding: 6px;
-      border-radius: 8px;
+      width: 62px;
+      padding: 7px;
+      border-radius: 10px;
       border: 1px solid #ccc;
       text-align: center;
+      font-size: 14px;
     }
 
     .total {
-      margin-top: 20px;
-      font-size: 18px;
+      margin-top: 22px;
+      font-size: 19px;
       text-align: center;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     button {
-      margin-top: 18px;
+      margin-top: 20px;
       width: 100%;
-      padding: 14px;
+      padding: 15px;
       border: none;
-      border-radius: 12px;
-      background: #ff7a18;
+      border-radius: 14px;
+      background: #111;
       color: white;
       font-size: 16px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: transform 0.15s ease, opacity 0.15s ease;
     }
 
     button:hover {
-      background: #e96b10;
+      transform: translateY(-1px);
+      opacity: 0.9;
     }
 
     .note {
       font-size: 12px;
-      color: #777;
+      color: #888;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 12px;
     }
   </style>
 </head>
 
 <body>
   <div class="card">
-    <h1>ANVA 🍱</h1>
-    <div class="tagline">because homesick deserves food</div>
+    <h1>ANVA 🍜</h1>
+    <div class="tagline">pick. calculate. pay.</div>
 
-    <!-- ITEMS -->
     <div class="item">
       <label>Noodles (₹60)</label>
-      <input type="number" min="0" value="0" onchange="calculate()">
+      <input type="number" min="0" value="0" oninput="calculate()">
     </div>
 
     <div class="item">
       <label>Roti & Sabzi (₹70)</label>
-      <input type="number" min="0" value="0" onchange="calculate()">
+      <input type="number" min="0" value="0" oninput="calculate()">
     </div>
 
     <div class="item">
       <label>Fried Rice (₹65)</label>
-      <input type="number" min="0" value="0" onchange="calculate()">
+      <input type="number" min="0" value="0" oninput="calculate()">
     </div>
 
     <div class="item">
       <label>Comfort Combo (₹120)</label>
-      <input type="number" min="0" value="0" onchange="calculate()">
+      <input type="number" min="0" value="0" oninput="calculate()">
     </div>
 
-    <!-- TOTAL -->
     <div class="total">
-      Total: ₹<span id="total">0</span>
+      Total to pay: ₹<span id="total">0</span>
     </div>
 
-    <!-- PAY -->
-    <button onclick="proceed()">Proceed to Pay 💳</button>
+    <button onclick="proceed()">Proceed to Order</button>
 
     <div class="note">
-      Orders without full payment won’t be cooked 🫠
+      full payment = confirmed order
     </div>
   </div>
 
@@ -142,10 +145,10 @@
     function proceed() {
       const total = document.getElementById("total").innerText;
       if (total == 0) {
-        alert("Bro… at least order something 😭");
+        alert("Choose something first 👀");
         return;
       }
-      window.location.href = "FORM_LINK_HERE";
+      window.location.href = "PASTE_YOUR_GOOGLE_FORM_LINK_HERE";
     }
   </script>
 </body>
