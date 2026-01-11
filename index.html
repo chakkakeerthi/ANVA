@@ -1,56 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>ANVA Order Calculator</title>
+  <meta charset="UTF-8">
+  <title>ANVA | Comfort Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #fff7f0;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    h2 { color: #333; }
-    select, input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
+
+    .card {
+      background: white;
+      width: 90%;
+      max-width: 420px;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .tagline {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .item label {
+      font-size: 15px;
+    }
+
+    input[type="number"] {
+      width: 60px;
+      padding: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
     .total {
       margin-top: 20px;
-      font-size: 20px;
+      font-size: 18px;
+      text-align: center;
       font-weight: bold;
-      color: #000;
+    }
+
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #ff7a18;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e96b10;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
+
 <body>
+  <div class="card">
+    <h1>ANVA 🍱</h1>
+    <div class="tagline">because homesick deserves food</div>
 
-  <h2>ANVA – Order Calculator</h2>
+    <!-- ITEMS -->
+    <div class="item">
+      <label>Noodles (₹60)</label>
+      <input type="number" min="0" value="0" onchange="calculate()">
+    </div>
 
-  <label>Choose Food Item</label>
-  <select id="item" onchange="calculateTotal()">
-    <option value="0">-- Select --</option>
-    <option value="60">Noodles – ₹60</option>
-    <option value="50">Fried Rice – ₹50</option>
-    <option value="10">Roti – ₹10</option>
-  </select>
+    <div class="item">
+      <label>Roti & Sabzi (₹70)</label>
+      <input type="number" min="0" value="0" onchange="calculate()">
+    </div>
 
-  <label>How hungry are you?</label>
-  <input type="number" id="quantity" min="1" oninput="calculateTotal()">
+    <div class="item">
+      <label>Fried Rice (₹65)</label>
+      <input type="number" min="0" value="0" onchange="calculate()">
+    </div>
 
-  <div class="total" id="total">
-    Total to Pay: ₹0
+    <div class="item">
+      <label>Comfort Combo (₹120)</label>
+      <input type="number" min="0" value="0" onchange="calculate()">
+    </div>
+
+    <!-- TOTAL -->
+    <div class="total">
+      Total: ₹<span id="total">0</span>
+    </div>
+
+    <!-- PAY -->
+    <button onclick="proceed()">Proceed to Pay 💳</button>
+
+    <div class="note">
+      Orders without full payment won’t be cooked 🫠
+    </div>
   </div>
 
   <script>
-    function calculateTotal() {
-      let price = document.getElementById("item").value;
-      let qty = document.getElementById("quantity").value;
-      let total = price * qty;
-      document.getElementById("total").innerText =
-        "Total to Pay: ₹" + (total || 0);
+    const prices = [60, 70, 65, 120];
+
+    function calculate() {
+      const inputs = document.querySelectorAll('input');
+      let sum = 0;
+      inputs.forEach((input, i) => {
+        sum += input.value * prices[i];
+      });
+      document.getElementById("total").innerText = sum;
+    }
+
+    function proceed() {
+      const total = document.getElementById("total").innerText;
+      if (total == 0) {
+        alert("Bro… at least order something 😭");
+        return;
+      }
+      window.location.href = "FORM_LINK_HERE";
     }
   </script>
-
 </body>
 </html>
