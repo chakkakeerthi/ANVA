@@ -1,156 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ANVA | Order Calci</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>ANVA • Order</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background:
-        radial-gradient(circle at 10% 20%, #ffe8d6 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, #fde2e4 0%, transparent 45%),
-        #fffaf5;
-    }
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #020617);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Inter, system-ui, sans-serif;
+  }
 
-    .card {
-      background: white;
-      width: 90%;
-      max-width: 420px;
-      border-radius: 22px;
-      padding: 26px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-    }
+  .card {
+    width: 380px;
+    padding: 26px;
+    border-radius: 20px;
+    background: #020617;
+    border: 1px solid #1e293b;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.65);
+  }
 
-    h1 {
-      text-align: center;
-      margin: 0;
-    }
+  .title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #22c55e;
+    letter-spacing: 1px;
+  }
 
-    .tagline {
-      text-align: center;
-      font-size: 13px;
-      color: #777;
-      margin-bottom: 22px;
-    }
+  .subtitle {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 22px;
+  }
 
-    .item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px dashed #1e293b;
+    color: #e5e7eb;
+    font-size: 14px;
+  }
 
-    .item label {
-      font-size: 15px;
-    }
+  .item input {
+    width: 60px;
+    padding: 6px;
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    color: #e5e7eb;
+    text-align: center;
+  }
 
-    input[type="number"] {
-      width: 62px;
-      padding: 7px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      text-align: center;
-      font-size: 14px;
-    }
+  .total {
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #38bdf8;
+  }
 
-    .total {
-      margin-top: 22px;
-      font-size: 19px;
-      text-align: center;
-      font-weight: 600;
-    }
+  .delivery {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 6px;
+  }
 
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 14px;
-      background: #111;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
+  .btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #020617;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+  }
 
-    button:hover {
-      transform: translateY(-1px);
-      opacity: 0.9;
-    }
-
-    .note {
-      font-size: 12px;
-      color: #888;
-      text-align: center;
-      margin-top: 12px;
-    }
-  </style>
+  .note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #94a3b8;
+    text-align: center;
+  }
+</style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>ANVA 🍜</h1>
-    <div class="tagline">pick. calculate. pay.</div>
 
-    <div class="item">
-      <label>Noodles (₹60)</label>
-      <input type="number" min="0" value="0" oninput="calculate()">
-    </div>
+<div class="card">
+  <div class="title">ANVA</div>
+  <div class="subtitle">pick • calculate • pay</div>
 
-    <div class="item">
-      <label>Roti & Sabzi (₹70)</label>
-      <input type="number" min="0" value="0" oninput="calculate()">
-    </div>
-
-    <div class="item">
-      <label>Fried Rice (₹65)</label>
-      <input type="number" min="0" value="0" oninput="calculate()">
-    </div>
-
-    <div class="item">
-      <label>Comfort Combo (₹120)</label>
-      <input type="number" min="0" value="0" oninput="calculate()">
-    </div>
-
-    <div class="total">
-      Total to pay: ₹<span id="total">0</span>
-    </div>
-
-    <button onclick="proceed()">Proceed to Order</button>
-
-    <div class="note">
-      full payment = confirmed order
-    </div>
+  <div class="item">
+    <span>🍜 Noodles (₹60)</span>
+    <input type="number" min="0" value="0" data-name="Noodles" data-price="60">
   </div>
 
-  <script>
-    const prices = [60, 70, 65, 120];
+  <div class="item">
+    <span>🍛 Fried Rice (₹65)</span>
+    <input type="number" min="0" value="0" data-name="Fried Rice" data-price="65">
+  </div>
 
-    function calculate() {
-      const inputs = document.querySelectorAll('input');
-      let sum = 0;
-      inputs.forEach((input, i) => {
-        sum += input.value * prices[i];
-      });
-      document.getElementById("total").innerText = sum;
+  <div class="item">
+    <span>🥘 Roti & Sabzi (₹70)</span>
+    <input type="number" min="0" value="0" data-name="Roti & Sabzi" data-price="70">
+  </div>
+
+  <div class="item">
+    <span>🔥 Comfort Combo (₹120)</span>
+    <input type="number" min="0" value="0" data-name="Comfort Combo" data-price="120">
+  </div>
+
+  <div class="total">Total: ₹<span id="total">0</span></div>
+  <div class="delivery">Includes ₹20 delivery charge</div>
+
+  <button class="btn" onclick="goToForm()">Proceed to Order</button>
+
+  <div class="note">Full payment = confirmed order</div>
+</div>
+
+<script>
+  const inputs = document.querySelectorAll("input");
+  const totalEl = document.getElementById("total");
+  const deliveryCharge = 20;
+
+  function calculateTotal() {
+    let sum = 0;
+    inputs.forEach(input => {
+      sum += input.value * input.dataset.price;
+    });
+    totalEl.textContent = sum > 0 ? sum + deliveryCharge : 0;
+  }
+
+  inputs.forEach(i => i.addEventListener("input", calculateTotal));
+
+  function goToForm() {
+    let orderSummary = [];
+    let sum = 0;
+
+    inputs.forEach(input => {
+      const qty = Number(input.value);
+      if (qty > 0) {
+        orderSummary.push(`${input.dataset.name} x ${qty}`);
+        sum += qty * input.dataset.price;
+      }
+    });
+
+    if (sum === 0) {
+      alert("Select at least one item bro 😭");
+      return;
     }
 
-    function proceed() {
-      const total = document.getElementById("total").innerText;
-      if (total == 0) {
-        alert("Choose something first 👀");
-        return;
-      }
-      window.open("https://forms.gle/hWp3oYFZo316yiU59","_blank"
-    );
-   }
-  </script>
+    const finalTotal = sum + deliveryCharge;
+
+    const formURL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSctmfYdR3MPh9AmIJQ5pHCvQGLXlqqwPV4mD20AA_Cgrajoeg/viewform" +
+      "?entry.1461116685=" + encodeURIComponent(orderSummary.join(", ")) +
+      "&entry.1441179696=" + encodeURIComponent(finalTotal);
+
+    window.location.href = formURL;
+  }
+</script>
+
 </body>
 </html>
+
+
